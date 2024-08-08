@@ -3,7 +3,6 @@
 ## Background
 
 Consider an equation that determines a runner's `weekly_mileage` for a given week `n` of their training plan:
-
 - Equation 1: `weekly_mileage`=`target_mileage`−(`target_mileage`−`starting_mileage`) * `a` ^ (`n`/`b`)
 - Equation 2: `weekly_mileage` = min(`starting_mileage` + (`a` * `n`) / `b`, `target_mileage`)
 
