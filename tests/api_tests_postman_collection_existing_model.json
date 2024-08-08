@@ -1,0 +1,183 @@
+{
+    "info": {
+        "name": "Test Existing Model",
+        "description": "Collection for testing API endpoints",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Forward Transform",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:5000/forward_transform?n=10&target_mileage=50&starting_mileage=10&a=0.9&b=5",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "5000",
+                    "path": [
+                        "forward_transform"
+                    ],
+                    "query": [
+                        {
+                            "key": "n",
+                            "value": "10"
+                        },
+                        {
+                            "key": "target_mileage",
+                            "value": "50"
+                        },
+                        {
+                            "key": "starting_mileage",
+                            "value": "10"
+                        },
+                        {
+                            "key": "a",
+                            "value": "0.9"
+                        },
+                        {
+                            "key": "b",
+                            "value": "5"
+                        }
+                    ]
+                }
+            },
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test(\"Status code is 200\", function () {",
+                            "    pm.response.to.have.status(200);",
+                            "});",
+                            "",
+                            "const responseJson = pm.response.json();",
+                            "pm.test(\"weekly_mileage is correct\", function () {",
+                            "    pm.expect(parseFloat(responseJson.weekly_mileage)).to.be.closeTo(17.6, 0.1);",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Reverse Transform",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:5000/reverse_transform?weekly_mileage=12.5&target_mileage=50&starting_mileage=10&a=0.9&b=5",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "5000",
+                    "path": [
+                        "reverse_transform"
+                    ],
+                    "query": [
+                        {
+                            "key": "weekly_mileage",
+                            "value": "12.5"
+                        },
+                        {
+                            "key": "target_mileage",
+                            "value": "50"
+                        },
+                        {
+                            "key": "starting_mileage",
+                            "value": "10"
+                        },
+                        {
+                            "key": "a",
+                            "value": "0.9"
+                        },
+                        {
+                            "key": "b",
+                            "value": "5"
+                        }
+                    ]
+                }
+            },
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test(\"Status code is 200\", function () {",
+                            "    pm.response.to.have.status(200);",
+                            "});",
+                            "",
+                            "const responseJson = pm.response.json();",
+                            "pm.test(\"n is correct\", function () {",
+                            "    pm.expect(parseFloat(responseJson.n)).to.be.closeTo(3.06, 0.1);",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Rate of Change",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:5000/rate_of_change?n=7&target_mileage=50&starting_mileage=10&a=0.9&b=5",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "5000",
+                    "path": [
+                        "rate_of_change"
+                    ],
+                    "query": [
+                        {
+                            "key": "n",
+                            "value": "7"
+                        },
+                        {
+                            "key": "target_mileage",
+                            "value": "50"
+                        },
+                        {
+                            "key": "starting_mileage",
+                            "value": "10"
+                        },
+                        {
+                            "key": "a",
+                            "value": "0.9"
+                        },
+                        {
+                            "key": "b",
+                            "value": "5"
+                        }
+                    ]
+                }
+            },
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test(\"Status code is 200\", function () {",
+                            "    pm.response.to.have.status(200);",
+                            "});",
+                            "",
+                            "const responseJson = pm.response.json();",
+                            "pm.test(\"rate_of_change is correct\", function () {",
+                            "    pm.expect(parseFloat(responseJson.rate_of_change)).to.be.closeTo(0.7464, 0.1);",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ]
+        }
+    ]
+}
